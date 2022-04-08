@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="XesmelWeb">
+                
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/producto"/>
+                
+        <property name="java-output-path" value="/XesmelWeb/build/classes"/>
+        <property name="context-root" value="XesmelWeb"/>
+            
+    </wb-module>
+    
+</project-modules>
