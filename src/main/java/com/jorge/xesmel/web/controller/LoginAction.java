@@ -30,11 +30,12 @@ public class LoginAction extends Action{
 			Usuario usuario = usuarioService.login(emailStr, passWordStr);
 			request.setAttribute(AttributeNames.USUARIO, usuario);
 			
-			return ViewPaths.USER_RESULTS;
+			return ViewPaths.USER_PROFILE;
 			
 		} catch (Exception e) {
 			// TODO
 			e.printStackTrace();
+			//en caso de no hacer login pediria datos de nuevo
 			return ViewPaths.USER_LOGIN;
 		}		
 

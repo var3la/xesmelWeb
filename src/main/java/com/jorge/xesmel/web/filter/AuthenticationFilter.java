@@ -42,9 +42,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 		
 		Usuario usuario = (Usuario) SessionManager.get(httpRequest, AttributeNames.USUARIO);
 		if(usuario==null) {
-			//si no esta autenticado
-			
-			
+			//si no esta autenticado		
 			
 			if (logger.isWarnEnabled()) {
 				logger.warn("Trying to GET..."+httpRequest.getRequestURI());

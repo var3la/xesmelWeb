@@ -1,10 +1,8 @@
 package com.jorge.xesmel.web.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +12,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.jorge.xesmel.model.Colmena;
 import com.jorge.xesmel.model.ColmenaCriteria;
+import com.jorge.xesmel.model.Results;
 import com.jorge.xesmel.service.ColmenaService;
 import com.jorge.xesmel.service.impl.ColmenaServiceImpl;
 import com.jorge.xesmel.web.controller.utils.ActionNames;
 import com.jorge.xesmel.web.controller.utils.AttributeNames;
 import com.jorge.xesmel.web.controller.utils.ParameterNames;
 import com.jorge.xesmel.web.controller.utils.ViewPaths;
+import com.jorge.xesmel.web.controller.utils.WebPagingUtils;
 
 /**
  * controlador (Servlet) para peticiones de colmena.
@@ -28,6 +28,8 @@ import com.jorge.xesmel.web.controller.utils.ViewPaths;
 public class ColmenaServlet extends HttpServlet {
 	
 	private static Logger logger = LogManager.getLogger(ColmenaServlet.class);
+	private static int PAGE_SIZE = 3; 
+	private static int PAGE_COUNT = 5;
 
 	private ColmenaService colmenaService = null;
 
@@ -69,13 +71,23 @@ public class ColmenaServlet extends HttpServlet {
 			}
 			
 			try {
+				Integer currentPage = WebPagingUtils.getCurrentPage(request);
+				Results<Colmena> results = colmenaService.findBy(cc, (currentPage-1)*PAGE_SIZE +1, PAGE_SIZE);
 				
-				List<Colmena> colmenas = colmenaService.findBy(cc);
-				request.setAttribute(AttributeNames.COLMENAS, colmenas);				
+				request.setAttribute(AttributeNames.COLMENAS, results);
+				
+				//atributos para paginacion
+				Integer totalPages = WebPagingUtils.getTotalPages((int) results.getTotal(), PAGE_SIZE);
+				request.setAttribute(AttributeNames.TOTAL_PAGES, totalPages);
+				request.setAttribute(AttributeNames.CURRENT_PAGE, currentPage);
+				request.setAttribute(AttributeNames.PAGING_FROM,WebPagingUtils.getPageFrom(currentPage, PAGE_COUNT, totalPages));
+				request.setAttribute(AttributeNames.PAGING_TO,WebPagingUtils.getPageTo(currentPage, PAGE_COUNT, totalPages));
+				
 				targetView= ActionNames.DETAIL;
 				
 			} catch (Exception e) {
 			logger.error("Search colmena: "+ e.getMessage());
+			errors.addCommonError("data error");
 			}
 			//detalle colmena
 			

@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link href="/XesmelWeb/css/404.css" rel="stylesheet">
-<link rel="shortcut icon" href="/XesmelWeb/img/logo/bee.png" type="image/x-icon">
+<link href="<%=request.getContextPath()%>/css/404.css" rel="stylesheet">
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/img/logo/bee.png" type="image/x-icon">
 <title>Problemas de conexión</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
             <hr>
             <div class='_1'>INTERNAL</div>
             <div class='_2'>SERVER ERROR</div>
-            <a class='btn' href='Xesmel/user/login.jsp'>BACK TO XESMEL</a>
+            <a class='btn' href='<%=request.getContextPath()%>/user/login.jsp'>BACK TO XESMEL</a>
         </div>
 </body>
 </html>

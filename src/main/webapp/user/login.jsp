@@ -19,14 +19,11 @@
 				
 				<%@include file="/common/errors.jsp"%>
 				
-				<input type="hidden" name="<%=ParameterNames.ACTION%>"
-					value="<%=ActionNames.LOGIN%>" />
+				<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ActionNames.LOGIN%>" />
 					<label class="form-label-wrapper">
 					<p class="form-label">Email</p>
-					<input name="<%=ParameterNames.EMAIL%>" class="form-input" type="email"
-					placeholder="Introduce tu email"
-					value="<%=ParameterUtils.print(request.getParameter(ParameterNames.EMAIL))%>"
-					required>
+					<input name="<%=ParameterNames.EMAIL%>" class="form-input" type="email" placeholder="Introduce tu email"
+					value="<%=ParameterUtils.print(request.getParameter(ParameterNames.EMAIL))%>"required>
 				</label> 
 				<label class="form-label-wrapper">
 					<%
@@ -41,7 +38,6 @@
 					<p class="form-label">Contraseña</p> <input
 					name="<%=ParameterNames.PASSWORD%>" class="form-input"
 					type="password" placeholder="Introduce tu contraseña"
-					value="<%=ParameterUtils.print(request.getParameter(ParameterNames.PASSWORD))%>"
 					required>
 					<%
  					parameterError = errors.getParameterError(ParameterNames.PASSWORD);
@@ -53,7 +49,8 @@
  					%>
 				</label> 
 				<a class="link-info forget-link" href="##">¿Has olvidado tu	contraseña?</a>
-				<button class="form-btn primary-default-btn transparent-btn">Entrar</button>
+				<button type="submit" class="form-btn primary-default-btn transparent-btn">Entrar</button>
+				
 				<br>
 				<p class="registertext">¿No tienes cuenta?</p>
 				<a class="link-info forget-link" href="<%=request.getContextPath()+ViewPaths.USER_SIGNUP%>">Regístrate!</a>

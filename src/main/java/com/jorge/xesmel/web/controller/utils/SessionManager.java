@@ -20,7 +20,9 @@ public class SessionManager {
 	
 	private static final HttpSession getSession(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
+		
 		if (session==null) {
+			
 			session = request.getSession(true);
 			//inicializo y guardo cualquier otro objeto que 
 			//tenga que estar desde el principio.

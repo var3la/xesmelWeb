@@ -16,15 +16,32 @@ public class ParameterUtils {
 		return URLDecoder.decode(request.getParameter(parameterName));
 	}
 	
-	
-	public static final String getURL(String uri, Map<String, String> parameters) {
+	public static final String getURLPaginacion(String uri, Map<String, String[]> parameters) {
 		StringBuilder sb = new StringBuilder(uri);
 		if (parameters.size()>0) {
 			sb.append("?");
 		}
+		String[] pvalues = null;
 		for (String pname: parameters.keySet()) {
-			sb.append(URLEncoder.encode(pname)).append("=")
-					.append(URLEncoder.encode(parameters.get(pname))).append("&");
+			pvalues = parameters.get(pname);
+			for (String pvalue: pvalues) {
+				sb.append(URLEncoder.encode(pname)).append("=").append(URLEncoder.encode(pvalue)).append("&");
+			}
+		}
+		return sb.toString();
+	}
+	
+	public static final String getURL(String uri, Map<String, String[]> parameters) {
+		StringBuilder sb = new StringBuilder(uri);
+		if (parameters.size()>0) {
+			sb.append("?");
+		}
+		String[] pvalues = null;
+		for (String pname: parameters.keySet()) {
+			pvalues = parameters.get(pname);
+			for (String pvalue: pvalues) {
+				sb.append(URLEncoder.encode(pname)).append("=").append(URLEncoder.encode(pvalue)).append("&");
+			}
 		}
 		return sb.toString();
 	}
@@ -37,13 +54,22 @@ public class ParameterUtils {
 		}
 	}
 	
-	public static final void main(String args[]) {
-		Map<String, String> userDetailParams = new HashMap<String, String>();
-		userDetailParams.put(ParameterNames.ACTION, ActionNames.DETAIL);
-		userDetailParams.put(ParameterNames.ID, "");
-		
-		String url = getURL(ControllerPaths.USER, userDetailParams);
-		System.out.println(url);
-		
+
+	public static final String print(Long parameterValue) {
+		if (parameterValue ==null) {
+			return Strings.EMPTY;
+		} else {
+			return Long.toString(parameterValue);
+		}
 	}
+	
+	public static final String print(Double parameterValue) {
+		if (parameterValue ==null) {
+			return Strings.EMPTY;
+		} else {
+			return Double.toString(parameterValue);
+		}
+	}
+	
+	
 }

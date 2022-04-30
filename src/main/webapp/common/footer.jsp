@@ -8,15 +8,17 @@
     <ul class="footer-end">
       <li><a href="##">Aviso legal</a></li>
       <li><a href="##">Soporte</a></li>
-      
+      <li></li>
     </ul>
   </div>
 </footer>
+</div>
+</div>
 <!-- Chart library -->
-<script src="/XesmelWeb/plugins/chart.min.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/chart.min.js"></script>
 <!-- Icons library -->
-<script src="/XesmelWeb/plugins/feather.min.js"></script>
+<script src="<%=request.getContextPath()%>/plugins/feather.min.js"></script>
 <!-- Custom scripts -->
-<script src="/XesmelWeb/js/script.js"></script>
+<script src="<%=request.getContextPath()%>/js/script.js"></script>
 </body>
 </html>

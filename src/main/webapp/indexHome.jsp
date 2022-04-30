@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="com.jorge.xesmel.web.controller.utils.*"%>
 <html lang="es">
     <head>
         <meta charset="utf-8">
@@ -16,16 +17,16 @@
         
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/bootstrap-icons.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/magnific-popup.css">
 
-        <link href="css/aos.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/aos.css" rel="stylesheet">
 
-        <link href="css/templatemo-nomad-force.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/templatemo-nomad-force.css" rel="stylesheet">
 
-        <link rel="shortcut icon" href="./img/logo/bee.png" type="image/x-icon">
+        <link rel="shortcut icon" href="<%=request.getContextPath()%>/img/logo/bee.png" type="image/x-icon">
 <!--
 
 TemplateMo 567 Nomad Force
@@ -86,7 +87,7 @@ https://templatemo.com/tm-567-nomad-force
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/XesmelWeb/user/login.jsp" target="_blank">Área privada</a>
+                                <a class="nav-link" href="<%=request.getContextPath()%>/user/login.jsp" target="_blank">Área privada</a>
                             </li>
                             
                         </ul>
@@ -116,7 +117,7 @@ https://templatemo.com/tm-567-nomad-force
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-3 col-12 p-0">      
-                            <img src="img/beeandflower.jpg" class="img-fluid about-image" alt="">
+                            <img src="<%=request.getContextPath()%>/img/beeandflower.jpg" class="img-fluid about-image" alt="">
                         </div>
 
                         <div class="col-lg-3 col-12 bg-dark">  
@@ -132,32 +133,32 @@ https://templatemo.com/tm-567-nomad-force
                             <section id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="img/apiario.jpg" class="img-fluid team-image" alt="">
+                                        <img src="<%=request.getContextPath()%>/img/apiario.jpg" class="img-fluid team-image" alt="">
                                                        
 
 
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="img/apiario0202.jpg" class="img-fluid team-image" alt="">
+                                        <img src="<%=request.getContextPath()%>/img/apiario0202.jpg" class="img-fluid team-image" alt="">
 
                                         
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="img/bee0202.jpg" class="img-fluid team-image" alt="">
+                                        <img src="<%=request.getContextPath()%>/img/bee0202.jpg" class="img-fluid team-image" alt="">
 
                                         
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="img/bee-colonies.jpg" class="img-fluid team-image" alt="">
+                                        <img src="<%=request.getContextPath()%>/img/bee-colonies.jpg" class="img-fluid team-image" alt="">
 
                                         
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="img/honeycomb.jpg" class="img-fluid team-image" alt="">
+                                        <img src="<%=request.getContextPath()%>/img/honeycomb.jpg" class="img-fluid team-image" alt="">
 
                                         
                                     </div>
@@ -191,8 +192,8 @@ https://templatemo.com/tm-567-nomad-force
 
                         <div class="col-lg-6 col-12">
                             <div class="portfolio-thumb mb-5" data-aos="fade-up">
-                                <a href="images/portfolio/visuals-Y4qzW3AsvqI-unsplash.jpeg" class="image-popup">
-                                    <img src="images/portfolio/visuals-Y4qzW3AsvqI-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/images/portfolio/visuals-Y4qzW3AsvqI-unsplash.jpeg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/images/portfolio/visuals-Y4qzW3AsvqI-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
@@ -203,8 +204,8 @@ https://templatemo.com/tm-567-nomad-force
                             </div> 
 
                             <div class="portfolio-thumb" data-aos="fade-up">
-                                <a href="images/portfolio/severin-candrian-nn3uIZqmUtE-unsplash.jpeg" class="image-popup">
-                                    <img src="images/portfolio/severin-candrian-nn3uIZqmUtE-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/images/portfolio/severin-candrian-nn3uIZqmUtE-unsplash.jpeg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/images/portfolio/severin-candrian-nn3uIZqmUtE-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
@@ -217,8 +218,8 @@ https://templatemo.com/tm-567-nomad-force
 
                         <div class="col-lg-6 col-12">
                             <div class="portfolio-thumb mt-5 mt-lg-0 mb-5" data-aos="fade-up">
-                                <a href="images/portfolio/tyler-nix-Y1drF0Y3Oe0-unsplash.jpeg" class="image-popup">
-                                    <img src="images/portfolio/tyler-nix-Y1drF0Y3Oe0-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/images/portfolio/tyler-nix-Y1drF0Y3Oe0-unsplash.jpeg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/images/portfolio/tyler-nix-Y1drF0Y3Oe0-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
@@ -229,8 +230,8 @@ https://templatemo.com/tm-567-nomad-force
                             </div> 
 
                             <div class="portfolio-thumb" data-aos="fade-up">
-                                <a href="images/portfolio/thought-catalog-gv-T-OjLe4c-unsplash.jpeg" class="image-popup">
-                                    <img src="images/portfolio/thought-catalog-gv-T-OjLe4c-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/images/portfolio/thought-catalog-gv-T-OjLe4c-unsplash.jpeg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/images/portfolio/thought-catalog-gv-T-OjLe4c-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
@@ -254,26 +255,26 @@ https://templatemo.com/tm-567-nomad-force
 
                             <h2 class="mb-4 text-center" data-aos="fade-up">Alguna duda o propuesta...</h2>
 
-                            <form action="#" method="post" class="contact-form" role="form" data-aos="fade-up">
-
+                            <form action="<%=request.getContextPath()%>/user" method="post" class="contact-form" role="form" data-aos="fade-up">
+								<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ActionNames.CONTACT_US%>">
                                 <div class="row">
                                     
                                     <div class="col-lg-6 col-6">
                                         <label for="name" class="form-label">Nombre <sup class="text-danger">*</sup></label>
 
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Nombre completo" required>
+                                        <input type="text" name="<%=ParameterNames.USER_NAME %>" id="name" class="form-control" placeholder="Nombre completo" required>
                                     </div>
 
                                     <div class="col-lg-6 col-6">
                                         <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
 
-                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Dirección Email" required>
+                                        <input type="email" name="<%=ParameterNames.EMAIL %>" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Dirección Email" required>
                                     </div>
 
                                     <div class="col-12 my-4">
                                         <label for="message" class="form-label"></label>
 
-                                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="Cuentanos un poco..." required></textarea>
+                                        <textarea name="<%=ParameterNames.MENSAJE %>" rows="6" class="form-control" id="message" placeholder="Cuentanos un poco..." required></textarea>
                                         
                                     </div>
 
@@ -307,7 +308,7 @@ https://templatemo.com/tm-567-nomad-force
                     <div class="col-6">
                         <p class="copyright-text mb-0">Copyright © XesmeL 2022 
                         
-                        <br><br>Design: <a href="https://templatemo.com/page/1" target="_parent">XesmeL</a></p>
+                        <br><br>Design: <a href="#" target="_parent">XesmeL</a></p>
                     
                     </div>
 
@@ -330,14 +331,14 @@ https://templatemo.com/tm-567-nomad-force
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/magnific-popup-options.js"></script>
-        <script src="js/scrollspy.min.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/jquery.sticky.js"></script>
+        <script src="<%=request.getContextPath()%>/js/aos.js"></script>
+        <script src="<%=request.getContextPath()%>/js/jquery.magnific-popup.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/magnific-popup-options.js"></script>
+        <script src="<%=request.getContextPath()%>/js/scrollspy.min.js"></script>
+        <script src="<%=request.getContextPath()%>/js/custom.js"></script>
 
     </body>
 </html>

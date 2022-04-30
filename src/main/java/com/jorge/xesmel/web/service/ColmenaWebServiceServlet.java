@@ -33,12 +33,15 @@ public class ColmenaWebServiceServlet extends HttpServlet {
 	
 	private ColmenaService colmenaService = null;
 	
+	private ColmenaCriteria colmenaCriteria = null;
+	
 	private Gson gson = null;
 	
 	
     public ColmenaWebServiceServlet() {
         super();        
         colmenaService = new ColmenaServiceImpl();
+        colmenaCriteria = new ColmenaCriteria();
         
         gson = new Gson();
         
@@ -49,6 +52,7 @@ public class ColmenaWebServiceServlet extends HttpServlet {
     	String actionStr = request.getParameter(ParameterNames.ACTION);
 
     	WebServiceResponse wsResponse = new WebServiceResponse();
+    	
 
     	if(ActionNames.SEARCH.equals(actionStr)) {
     		//id de apiario
@@ -58,12 +62,11 @@ public class ColmenaWebServiceServlet extends HttpServlet {
     		Long apiarioId = Long.valueOf(apiarioIdStr);
 
     		try {
-    			ColmenaCriteria colmenaCriteria = new ColmenaCriteria();
-
-
-    			List<Colmena> colmenas = colmenaService.findBy(colmenaCriteria);	
+    			
+    			List<Colmena> colmenas = (List<Colmena>) colmenaService.findById(apiarioId);	
 
     			wsResponse.setData(colmenas);
+    			
     		}catch (DataException de) {
     			logger.error(de.toString());
     			wsResponse.setErrorCode(ErrorNames.DATA_ERROR);

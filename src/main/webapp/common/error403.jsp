@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link href="/XesmelWeb/css/404.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/404.css" rel="stylesheet">
 <title>No tiene permisos</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
             <hr>
             <div class='_1'>FORBIDDEN</div>
             <div class='_2'>YOU DON´T HAVE PERMISSION TO ACCESS</div>
-            <a class='btn' href='Xesmel/user/login.jsp'>BACK TO XESMEL</a>
+            <a class='btn' href='<%=request.getContextPath()%>/user/login.jsp'>BACK TO XESMEL</a>
         </div>
 </body>
 </html>

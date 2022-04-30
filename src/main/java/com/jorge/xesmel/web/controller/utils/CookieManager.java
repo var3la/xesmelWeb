@@ -4,7 +4,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CookieManager {
+	
+	private static Logger logger = LogManager.getLogger(CookieManager.class);
+
 
     public static final String getValue(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
@@ -19,8 +25,12 @@ public class CookieManager {
     }
 
     public static final void setValue(HttpServletResponse response, String name, String value, int ttl) {
-        Cookie cookie = new Cookie(name, value); 
-        cookie.setMaxAge(ttl);
-        response.addCookie(cookie);
+    	if (logger.isInfoEnabled()) {
+			logger.info("Setting cookie: "+name+" = "+value+" ("+ttl+")");
+		}
+		Cookie cookie = new Cookie(name, value); 
+		cookie.setMaxAge(ttl);
+		cookie.setPath("/");
+		response.addCookie(cookie);
     }
 }

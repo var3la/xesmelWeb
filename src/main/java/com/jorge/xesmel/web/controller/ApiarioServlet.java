@@ -14,13 +14,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.jorge.xesmel.model.Apiario;
 import com.jorge.xesmel.model.ApiarioCriteria;
+import com.jorge.xesmel.model.Usuario;
 import com.jorge.xesmel.service.ApiarioService;
 import com.jorge.xesmel.service.impl.ApiarioServiceImpl;
 import com.jorge.xesmel.web.controller.utils.ActionNames;
 import com.jorge.xesmel.web.controller.utils.AttributeNames;
 import com.jorge.xesmel.web.controller.utils.ParameterNames;
+import com.jorge.xesmel.web.controller.utils.SessionManager;
 import com.jorge.xesmel.web.controller.utils.ViewPaths;
-
 
 public class ApiarioServlet extends HttpServlet{
 
@@ -37,6 +38,10 @@ public class ApiarioServlet extends HttpServlet{
 			throws ServletException, IOException {
 		
 		String targetView = null;
+		boolean forward = true;
+		
+		Errors errors = new Errors();
+		request.setAttribute(AttributeNames.ERRORS, errors);
 		
 		String action = request.getParameter(ParameterNames.ACTION);
 		
@@ -44,13 +49,20 @@ public class ApiarioServlet extends HttpServlet{
 		
 		if(ActionNames.SEARCH.equalsIgnoreCase(action)) {
 			
+			String IdStr = request.getParameter(ParameterNames.APIARIO_ID);
 			String nombreStr = request.getParameter(ParameterNames.APIARIO_NAME);
 			String ubicacionStr = request.getParameter(ParameterNames.UBICACION_APIARIO);
+			String usuarioIdStr = request.getParameter(ParameterNames.USER_ID);
+			
+			Long apiarioId = Long.valueOf(IdStr);
+			Long usuarioId = Long.valueOf(usuarioIdStr);
 			
 			ApiarioCriteria ac = new ApiarioCriteria();
 			
+			ac.setId(apiarioId);
 			ac.setNombre(nombreStr);
 			ac.setUbicacion(ubicacionStr);
+			ac.setUsuarioId(usuarioId);
 			
 			try {
 				
@@ -82,15 +94,53 @@ public class ApiarioServlet extends HttpServlet{
 			
 		}else if (ActionNames.CREATE.equalsIgnoreCase(action)) {
 			
+			targetView = ViewPaths.APIARIO_CREATE;
+			
+			
 			String nombreStr = request.getParameter(ParameterNames.APIARIO_NAME);
 			String ubicacionStr = request.getParameter(ParameterNames.UBICACION_APIARIO);
 			String latitudStr = request.getParameter(ParameterNames.LATITUD_APIARIO);
 			String longitudStr = request.getParameter(ParameterNames.LONGITUD_APIARIO);
-			String usuarioIdStr = request.getParameter(ParameterNames.USER_ID);
 			
+			
+			Double latitud = Double.valueOf(latitudStr);
+			Double longitud = Double.valueOf(longitudStr);
+			
+			Usuario usuario = (Usuario) SessionManager.get(request, AttributeNames.USUARIO);
+			
+			if(!errors.hasErrors()) {
+				try {
+					Apiario apiario = new Apiario();
+					apiario.setNombre(nombreStr);
+					apiario.setUbicacion(ubicacionStr);
+					apiario.setLatitud(latitud);
+					apiario.setLongitud(longitud);
+					apiario.setUsuarioId(usuario.getId());
+					
+					apiarioService.create(apiario);
+					
+					targetView = ViewPaths.APIARIO_SEARCH;
+				}catch (Exception e) {
+					if (logger.isInfoEnabled()) {
+						logger.info(nombreStr, e);
+					}
+				}
+			}
 		}
 		
+		logger.info(forward ? "Forwarding to " : "Redirecting to ", targetView);
+		if (forward) {
+			request.getRequestDispatcher(targetView).forward(request, response);
+
+		} else {
+			response.sendRedirect(request.getContextPath() + targetView);
+		}
 	}
+	
+	
+	
+
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

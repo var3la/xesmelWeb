@@ -37,6 +37,8 @@ public class ParameterNames {
 	public static final String LATITUD_APIARIO ="latitud";
 	public static final String LONGITUD_APIARIO ="longitud";
 	
+	public static final String MENSAJE ="mensaje";
+	
 	
 	
 }

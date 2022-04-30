@@ -5,8 +5,12 @@
 	version="3.1">
 	<display-name>XesmelWeb</display-name>
 	<welcome-file-list>
-		<welcome-file>/user/login.jsp</welcome-file>
+		<welcome-file>/indexHome.jsp</welcome-file>
 	</welcome-file-list>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
 	
 	<servlet>
 		<servlet-name>UsuarioServlet</servlet-name>
@@ -15,17 +19,17 @@
 	
 	<servlet-mapping>
 		<servlet-name>UsuarioServlet</servlet-name>
-		<url-pattern>/user</url-pattern>
+		<url-pattern>/private/user</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
+	<servlet>	
 		<servlet-name>ApiarioServlet</servlet-name>
 		<servlet-class>com.jorge.xesmel.web.controller.ApiarioServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>ApiarioServlet</servlet-name>
-		<url-pattern>/apiario</url-pattern>
+		<url-pattern>/private/apiario</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -35,7 +39,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>EventoServlet</servlet-name>
-		<url-pattern>/evento</url-pattern>
+		<url-pattern>/private/evento</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -45,7 +49,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>ColmenaServlet</servlet-name>
-		<url-pattern>/colmena</url-pattern>
+		<url-pattern>/private/colmena</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -55,7 +59,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>CosechaServlet</servlet-name>
-		<url-pattern>/cosecha</url-pattern>
+		<url-pattern>/private/cosecha</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -95,15 +99,15 @@
 	</filter-mapping>
 	
 	<!-- 
+	
 	<filter>
-		<filter-name>AuthentificationFilter</filter-name>
+		<filter-name>AuthenticationFilter</filter-name>
 		<filter-class>com.jorge.xesmel.web.filter.AuthenticationFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/private/*</url-pattern>
 	</filter-mapping>
-	  -->
-	
-	
+	  
+	 -->
 </web-app>   

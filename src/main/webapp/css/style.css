@@ -17,6 +17,14 @@ html {
   /* 2 */
 }
 
+/*personal styles*/
+.nameup{
+	position: relative;
+	float: left;
+	margin-right: 20px;
+	margin-top: 7px;
+}
+
 /* Sections
    ========================================================================== */
 
@@ -151,6 +159,10 @@ sup {
 
 sub {
   bottom: -0.25em;
+}
+
+.errors{
+	background-color: ff0000;
 }
 
 sup {
@@ -1028,6 +1040,9 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
 }
+.iconoTable{
+	max-width: 20px;
+}
 
 .logo {
   background-image: url(../img/logo/bee2.png);
@@ -1307,10 +1322,11 @@ h3 {
 
 .main-title {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 45px;
   line-height: 1.42;
   color: #171717;
   margin-bottom: 20px;
+  margin-left: 18%;
 }
 
 /* Buttons */
@@ -1372,13 +1388,13 @@ button.disabled:focus {
   flex-wrap: wrap;
   border-radius: 4px;
   padding: 10px 20px;
-  background-color: #2f49d1;
+  background-color: #ffc107;
   color: #fff;
 }
 
 .primary-default-btn:hover {
-  background-color: #4661F0;
-  color: #fff;
+  background-color: #ffff80;
+  color: #000000;
 }
 
 .primary-white-btn {
@@ -2892,7 +2908,7 @@ label {
 
 .chart {
   width: 100%;
-  height: 370px;
+ 
   margin-bottom: 20px;
   -webkit-box-shadow: 0px 15px 50px 0px rgba(160, 163, 189, 0.1);
   box-shadow: 0px 15px 50px 0px rgba(160, 163, 189, 0.1);
@@ -3061,9 +3077,9 @@ label {
 }
 
 .footer {
-  border-top: 1px solid #E0E1EA;
+  /*border-top: 1px solid #E0E1EA;*/
   padding-top: 14px;
-  padding-bottom: 14px;
+  /*padding-bottom: 14px;*/
   color: #b9b9b9;
   font-size: 12px;
 }
@@ -4140,7 +4156,7 @@ label {
 
   .chart {
     height: auto;
-    max-height: 370px;
+    
   }
 }
 

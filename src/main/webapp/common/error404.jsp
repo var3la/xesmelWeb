@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/XesmelWeb/css/404.css" rel="stylesheet">
-<link rel="shortcut icon" href="/XesmelWeb/img/logo/bee.png" type="image/x-icon">
+<link href="<%=request.getContextPath()%>/css/404.css" rel="stylesheet">
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/img/logo/bee.png" type="image/x-icon">
 <meta charset="ISO-8859-1">
-<title>Pagina no encontrada</title>
+<title>Página no encontrada</title>
 </head>
 <body>
 	<div id="clouds">
@@ -22,7 +22,7 @@
             <hr>
             <div class='_1'>THE PAGE</div>
             <div class='_2'>WAS NOT FOUND</div>
-            <a class='btn' href='Xesmel/user/login.jsp'>BACK TO XESMEL</a>
+            <a class='btn' href='<%=request.getContextPath()%>/indexHome.jsp'>BACK TO XESMEL</a>
         </div>
 </body>
 </html>

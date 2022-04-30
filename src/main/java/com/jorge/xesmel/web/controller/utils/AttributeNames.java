@@ -21,4 +21,6 @@ public class AttributeNames {
 	public static final String EVENTO = " evento ";
 	public static final String APIARIO = "apiario";
 	
+	public static final String ID = "id";
+	
 }

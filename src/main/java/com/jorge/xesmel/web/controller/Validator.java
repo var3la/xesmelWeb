@@ -14,11 +14,34 @@ public class Validator {
 	//TODO todas las validaciones
 	private static Logger logger = LogManager.getLogger(Validator.class);
 	
+	private static final String EMAIL_VALIDATION = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$";
+	private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_VALIDATION);
+	
+	private static final String DNI_VALIDATION = "[0-9]{8}+[a-zA-Z]{1}";
+	private static final Pattern DNI_PATTERN = Pattern.compile(DNI_VALIDATION);
+	
+	private static final String PHONE_VALIDATION = "^(0034|\\\\+34)?(\\\\d\\\\d\\\\d)-? ?(\\\\d\\\\d)-? ?(\\\\d)-? ?(\\\\d)-? ?(\\\\d\\\\d)$";
+	private static final Pattern PHONE_PATTERN = Pattern.compile(PHONE_VALIDATION);
+		
 	//ES - provincia(27,15,36,32)(dos digitos) - municipio(3 digitos) - (siete digitos unicos) 
+	private static final String REGA_VALIDATION = "^ES+[27,15,36,32]+[0-9]{3}+[0-9]{7}$";
+	private static final Pattern REGA_PATTERN = Pattern.compile(REGA_VALIDATION);
 	
-	private static final String REGA = "ES+[27,15,36,32]+[0-9]{3}+[0-9]{7}";
 	
-	private static final Pattern REGA_PATTERN = Pattern.compile(REGA);
+	public static final boolean validateDNI (String dni) {
+		Matcher m = DNI_PATTERN.matcher(dni);
+		return m.matches();
+	}
+	
+	public static final boolean validatePhone(String phone) {
+		Matcher m = PHONE_PATTERN.matcher(phone);
+		return m.matches();
+	}
+	
+	public static final boolean validateEmail (String email) {
+		Matcher m = EMAIL_PATTERN.matcher(email);
+		return m.matches();
+	}
 	
 	public static final boolean validateRega (String rega) {
 		Matcher m = REGA_PATTERN.matcher(rega);
@@ -54,6 +77,5 @@ public class Validator {
 		return v;
 		
 	}
-	
-	
+			
 }
