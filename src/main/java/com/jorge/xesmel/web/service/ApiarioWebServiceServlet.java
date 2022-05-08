@@ -33,14 +33,13 @@ public class ApiarioWebServiceServlet extends HttpServlet {
 	
 	private ApiarioService apiarioService = null;
 	private UsuarioService usuarioService = null;
-	private ApiarioCriteria apiarioCriteria = null;
+	
 	
 	private Gson gson = null;
 	
 	public ApiarioWebServiceServlet() {
 		super();
 		apiarioService = new ApiarioServiceImpl();
-		apiarioCriteria = new ApiarioCriteria();
 		usuarioService = new UsuarioServiceImpl();
 		gson = new Gson();
 		
@@ -53,15 +52,17 @@ public class ApiarioWebServiceServlet extends HttpServlet {
 		WebServiceResponse wsResponse = new WebServiceResponse();
 		
 		if(ActionNames.SEARCH.equals(actionStr)) {
-			//id de apiario
 			
-			String usuarioIdStr = request.getParameter(ParameterNames.USER_ID);
-			//validacion
+			String usuarioStr = request.getParameter(ParameterNames.USER_ID);
 			
-			Long usuarioId = Long.valueOf(usuarioIdStr);
+			Long usuario = Long.valueOf(usuarioStr);
+			
+			ApiarioCriteria apiario = new ApiarioCriteria();
+			
+			apiario.setUsuarioId(usuario);
 			
 			try {
-				List<Apiario> apiarios = (List<Apiario>) apiarioService.findByUsuarioId(usuarioId);
+				List<Apiario> apiarios = (List<Apiario>) apiarioService.findByUsuarioId(usuario);
 				
 				String json = gson.toJson(apiarios);
 				
@@ -82,7 +83,7 @@ public class ApiarioWebServiceServlet extends HttpServlet {
 				wsResponse.setErrorCode(ErrorNames.SERVICE_ERROR);
 			}
 			
-    		response.getWriter().append("Served at: ").append(request.getContextPath());
+    		
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -87,7 +87,7 @@ https://templatemo.com/tm-567-nomad-force
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=request.getContextPath()%>/user/login.jsp" target="_blank">Área privada</a>
+                                <a class="nav-link" href="<%=request.getContextPath()+ControllerPaths.USUARIO%>/login.jsp" target="_blank">Área privada</a>
                             </li>
                             
                         </ul>
@@ -103,7 +103,8 @@ https://templatemo.com/tm-567-nomad-force
                         </div>
 
                         <div class="col-lg-6 col-12 mt-3 mb-lg-5">
-                            <p class="me-4" data-aos="fade-up" data-aos-delay="300">Proyecto tararitarara.....
+                            <p class="me-4" data-aos="fade-up" data-aos-delay="300">La Ribeira Sacra es una zona con una gran tradición mielera y 
+                            nuestra intención es facilitarles la labor a estos artesanos.
                             </p>
                         </div>
 
@@ -192,52 +193,52 @@ https://templatemo.com/tm-567-nomad-force
 
                         <div class="col-lg-6 col-12">
                             <div class="portfolio-thumb mb-5" data-aos="fade-up">
-                                <a href="<%=request.getContextPath()%>/images/portfolio/visuals-Y4qzW3AsvqI-unsplash.jpeg" class="image-popup">
-                                    <img src="<%=request.getContextPath()%>/images/portfolio/visuals-Y4qzW3AsvqI-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/img/pant/menuinicio.jpg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/img/pant/menuinicio.jpg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
-                                    <h4 class="portfolio-title mb-0">Effortless</h4>
+                                    <h4 class="portfolio-title mb-0">Menú inicio</h4>
 
-                                    <p class="text-danger">Branding</p>
+                                    <p class="text-danger">Fácil e intuitivo</p>
                                 </div>
                             </div> 
 
                             <div class="portfolio-thumb" data-aos="fade-up">
-                                <a href="<%=request.getContextPath()%>/images/portfolio/severin-candrian-nn3uIZqmUtE-unsplash.jpeg" class="image-popup">
-                                    <img src="<%=request.getContextPath()%>/images/portfolio/severin-candrian-nn3uIZqmUtE-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/img/pant/edicionperfil.jpg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/img/pant/edicionperfil.jpg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
-                                    <h4 class="portfolio-title mb-0">Health technology</h4>
+                                    <h4 class="portfolio-title mb-0">Consulta y edita tu perfil</h4>
 
-                                    <p class="text-success">Art Direction</p>
+                                    <p class="text-success">Podrás cambiar y actualizar tus datos</p>
                                 </div>
                             </div> 
                         </div>
 
                         <div class="col-lg-6 col-12">
                             <div class="portfolio-thumb mt-5 mt-lg-0 mb-5" data-aos="fade-up">
-                                <a href="<%=request.getContextPath()%>/images/portfolio/tyler-nix-Y1drF0Y3Oe0-unsplash.jpeg" class="image-popup">
-                                    <img src="<%=request.getContextPath()%>/images/portfolio/tyler-nix-Y1drF0Y3Oe0-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/img/pant/registro.jpg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/img/pant/registro.jpg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
-                                    <h4 class="portfolio-title mb-0">Maki</h4>
+                                    <h4 class="portfolio-title mb-0">Registro</h4>
 
-                                    <p class="text-warning">Website</p>
+                                    <p class="text-info">Crea de forma sencilla tus apiarios y colmenas</p>
                                 </div>
                             </div> 
 
                             <div class="portfolio-thumb" data-aos="fade-up">
-                                <a href="<%=request.getContextPath()%>/images/portfolio/thought-catalog-gv-T-OjLe4c-unsplash.jpeg" class="image-popup">
-                                    <img src="<%=request.getContextPath()%>/images/portfolio/thought-catalog-gv-T-OjLe4c-unsplash.jpeg" class="img-fluid portfolio-image" alt="">
+                                <a href="<%=request.getContextPath()%>/img/pant/resultados.jpg" class="image-popup">
+                                    <img src="<%=request.getContextPath()%>/img/pant/resultados.jpg" class="img-fluid portfolio-image" alt="">
                                 </a>
 
                                 <div class="portfolio-info">                     
-                                    <h4 class="portfolio-title mb-0">The gig economy</h4>
+                                    <h4 class="portfolio-title mb-0">Resultados</h4>
 
-                                    <p class="text-info">Graphic</p>
+                                    <p class="text-warning">Muestra los datos de tu explotación</p>
                                 </div>
                             </div> 
                         </div>
@@ -253,9 +254,9 @@ https://templatemo.com/tm-567-nomad-force
                         
                         <div class="col-lg-7 col-12 mx-auto">
 
-                            <h2 class="mb-4 text-center" data-aos="fade-up">Alguna duda o propuesta...</h2>
+                            <h3 class="mb-4 text-center" data-aos="fade-up">Quieres saber más sobre nosotros o tienes alguna sugerencia...</h3>
 
-                            <form action="<%=request.getContextPath()%>/user" method="post" class="contact-form" role="form" data-aos="fade-up">
+                            <form action="<%=request.getContextPath()+ControllerPaths.USUARIO%>" method="post" class="contact-form" role="form" data-aos="fade-up">
 								<input type="hidden" name="<%=ParameterNames.ACTION%>" value="<%=ActionNames.CONTACT_US%>">
                                 <div class="row">
                                     

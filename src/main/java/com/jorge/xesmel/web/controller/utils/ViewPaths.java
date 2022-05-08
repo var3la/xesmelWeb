@@ -16,6 +16,7 @@ public class ViewPaths {
 	public static final String COLMENA_RESULTS = PRIVATE+"/colmena/colmena-results.jsp";
 	public static final String COLMENA_SEARCH = PRIVATE+"/colmena/colmena-search.jsp";
 	public static final String COLMENA_DETAIL =PRIVATE+"/colmena/colmena-detail.jsp";
+	public static final String COLMENA_CREATE =PRIVATE+"/colmena/colmena-create.jsp";
 	
 	public static final String EVENTO_DETAIL = PRIVATE+"/evento/evento-detail.jsp";
 	public static final String EVENTO_RESULTS = PRIVATE+"/evento/evento-results.jsp";

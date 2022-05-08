@@ -3,6 +3,7 @@ package com.jorge.xesmel.web.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ import com.jorge.xesmel.web.controller.utils.SessionManager;
 import com.jorge.xesmel.web.controller.utils.ViewPaths;
 
 /**
- * controlador para peticiones de usuario
+ * controlador para peticiones de usuario parte publica
  * 
  * @author jorge
  *
@@ -44,14 +45,13 @@ import com.jorge.xesmel.web.controller.utils.ViewPaths;
 public class UsuarioServlet extends HttpServlet {
 
 	private static Logger logger = LogManager.getLogger(UsuarioServlet.class);
-	
+
 	private static final String CFGM_PFX = ConfigNames.PFX;
 	private static final String MAIL = CFGM_PFX + ConfigNames.MAIL;
 	private ConfigurationManager cfgM = ConfigurationManager.getInstance();
-	
+
 	private UsuarioService usuarioService = null;
 	private MailService mailService = null;
-	
 
 	public UsuarioServlet() {
 		super();
@@ -113,7 +113,7 @@ public class UsuarioServlet extends HttpServlet {
 
 		} else if (ActionNames.LOGIN.equalsIgnoreCase(action)) {
 
-			targetView = ViewPaths.HOME;
+			targetView = ViewPaths.USER_LOGIN;
 			forward = true;
 
 			String emailStr = request.getParameter(ParameterNames.EMAIL);
@@ -122,24 +122,24 @@ public class UsuarioServlet extends HttpServlet {
 
 			if (StringUtils.isBlank(emailStr)) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("El email es obligatorio "+emailStr);
+					logger.debug("El email es obligatorio " + emailStr);
 				}
 				errors.addParameterError(ParameterNames.EMAIL, ErrorNames.REQUIRED);
-			}else {
-				emailStr=emailStr.trim();
-				if(!Validator.validateEmail(emailStr)) {
+			} else {
+				emailStr = emailStr.trim();
+				if (!Validator.validateEmail(emailStr)) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("email incorrecto");
 					}
-					errors.addParameterError(ParameterNames.EMAIL, ErrorNames.DATA_ERROR);
+					errors.addParameterError(ParameterNames.EMAIL, ErrorNames.MAIL_ERROR);
 				}
 			}
 			if (StringUtils.isBlank(passwordStr)) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("null password: ");
 				}
-				errors.addParameterError(ParameterNames.PASSWORD, ErrorNames.DATA_ERROR);						
-			}			
+				errors.addParameterError(ParameterNames.PASSWORD, ErrorNames.PASSWORD_ERROR);
+			}
 			try {
 				Usuario usuario = usuarioService.login(emailStr, passwordStr);
 
@@ -156,7 +156,7 @@ public class UsuarioServlet extends HttpServlet {
 
 			} catch (InvalidUserOrPasswordException iupe) {
 				logger.error("login: ", emailStr, iupe.getMessage());
-				errors.addCommonError("Email o contraseña incorrectos");
+				errors.addCommonError("Email o contraseña incorrectos.");
 			} catch (DataException de) {
 				logger.error("Login: " + emailStr, de.getMessage(), de);
 				errors.addCommonError("Ha ocurrido un problema al consultar sus datos. Intentelo de nuevo mas tarde.");
@@ -179,47 +179,83 @@ public class UsuarioServlet extends HttpServlet {
 			targetView = ViewPaths.USER_SIGNUP;
 
 			String userNameStr = request.getParameter(ParameterNames.USER_NAME);
-			if (StringUtils.isBlank(userNameStr)) {
-				errors.addParameterError(ParameterNames.USER_NAME, ErrorNames.REQUIRED);
+			userNameStr = userNameStr.trim();
+			if (!Validator.validateSeveralText(userNameStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto nombre: ");
+				}
+				errors.addParameterError(ParameterNames.USER_NAME, ErrorNames.NAME_ERROR);
 			}
 
-			String lastNameStr = request.getParameter(ParameterNames.LAST_NAME);			
-			if (StringUtils.isBlank(lastNameStr)) {
-				errors.addParameterError(ParameterNames.LAST_NAME, ErrorNames.REQUIRED);
+			String lastNameStr = request.getParameter(ParameterNames.LAST_NAME);
+			lastNameStr = lastNameStr.trim();
+			if (!Validator.validateSeveralText(lastNameStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto apellido:");
+				}
+				errors.addParameterError(ParameterNames.LAST_NAME, ErrorNames.LAST_NAME_ERROR);
 			}
-			
+
 			String lastNameTwoStr = request.getParameter(ParameterNames.LAST_NAME_TWO);
-			if (StringUtils.isBlank(lastNameTwoStr)) {
-				errors.addParameterError(ParameterNames.LAST_NAME_TWO, ErrorNames.REQUIRED);
+			lastNameTwoStr = lastNameTwoStr.trim();
+			if (!Validator.validateSeveralText(lastNameTwoStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto segundo apellido: ");
+				}
+				errors.addParameterError(ParameterNames.LAST_NAME_TWO, ErrorNames.LAST_NAME_ERROR);
 			}
-			
+
 			String tradeNameStr = request.getParameter(ParameterNames.TRADENAME);
-			if (StringUtils.isBlank(tradeNameStr)) {
-				errors.addParameterError(ParameterNames.TRADENAME, ErrorNames.REQUIRED);
+			tradeNameStr = tradeNameStr.trim();
+			if (!Validator.validateSeveralText(tradeNameStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto nombre comercial: ");
+				}
+				errors.addParameterError(ParameterNames.TRADENAME, ErrorNames.TRADENAME_ERROR);
 			}
-			
+
 			String dniStr = request.getParameter(ParameterNames.DNI);
-			if (StringUtils.isBlank(dniStr)) {
-				errors.addParameterError(ParameterNames.DNI, ErrorNames.REQUIRED);
+			dniStr = dniStr.trim();
+			if (!Validator.validateDNI(dniStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto dni:");
+				}
+				errors.addParameterError(ParameterNames.DNI, ErrorNames.DNI_ERROR);
 			}
-			
+
 			String phoneStr = request.getParameter(ParameterNames.PHONE);
-			if (StringUtils.isBlank(phoneStr)) {
-				errors.addParameterError(ParameterNames.PHONE, ErrorNames.REQUIRED);
+			phoneStr = phoneStr.trim();
+			if (!Validator.validatePhone(phoneStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto password:");
+				}
+				errors.addParameterError(ParameterNames.PHONE, ErrorNames.PHONE_ERROR);
 			}
-			
+
 			String emailStr = request.getParameter(ParameterNames.EMAIL);
-			if (StringUtils.isBlank(emailStr)) {
-				errors.addParameterError(ParameterNames.EMAIL, ErrorNames.REQUIRED);
+			emailStr = emailStr.trim();
+			if (!Validator.validateEmail(emailStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto email: ");
+				}
+				errors.addParameterError(ParameterNames.PASSWORD, ErrorNames.EMAIL_ERROR);
 			}
-			
+
 			String passwordStr = request.getParameter(ParameterNames.PASSWORD);
-			if(passwordStr.length()<8) {
-				errors.addParameterError(ParameterNames.PASSWORD,"La contraseña debe tener al menos 8 caracteres.");
+			passwordStr = passwordStr.trim();
+			if (!Validator.validatePassword(passwordStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto password:");
+				}
+				errors.addParameterError(ParameterNames.PASSWORD, ErrorNames.PASSWORDS_ERROR);
 			}
 			String regaStr = request.getParameter(ParameterNames.REGA);
-			if (StringUtils.isBlank(regaStr)) {
-				errors.addParameterError(ParameterNames.REGA, ErrorNames.REQUIRED);
+			regaStr = regaStr.trim();
+			if (!Validator.validateRega(regaStr)) {
+				if (logger.isDebugEnabled()) {
+					logger.debug("Dato incorrecto REGA: ");
+				}
+				errors.addParameterError(ParameterNames.REGA, ErrorNames.REGA_ERROR);
 			}
 
 			if (!errors.hasErrors()) {
@@ -239,7 +275,6 @@ public class UsuarioServlet extends HttpServlet {
 
 					usuarioService.signUp(user);
 
-					user.wait();
 					targetView = ViewPaths.HOME;
 
 				} catch (UserAlreadyExistsException uaee) {
@@ -254,58 +289,58 @@ public class UsuarioServlet extends HttpServlet {
 				} catch (Exception e) {
 					logger.error(userNameStr, e);
 					errors.addCommonError(ErrorNames.EXCEPTION_ERROR);
-							
+
 				}
 
 			}
-			
+
+			// Actualizar perfil
+
 		} else if (ActionNames.UPDATE.equalsIgnoreCase(action)) {
-			
+
 			targetView = ViewPaths.USER_PROFILE;
-			forward = false;			
-			
+			forward = false;
+
 			String userNameStr = request.getParameter(ParameterNames.USER_NAME);
 			if (StringUtils.isBlank(userNameStr)) {
 				errors.addParameterError(ParameterNames.USER_NAME, ErrorNames.REQUIRED);
 			}
-			
+
 			String lastNameStr = request.getParameter(ParameterNames.LAST_NAME);
 			if (StringUtils.isBlank(lastNameStr)) {
 				errors.addParameterError(ParameterNames.LAST_NAME, ErrorNames.REQUIRED);
 			}
-			
+
 			String lastNameTwoStr = request.getParameter(ParameterNames.LAST_NAME_TWO);
 			if (StringUtils.isBlank(lastNameTwoStr)) {
 				errors.addParameterError(ParameterNames.LAST_NAME_TWO, ErrorNames.REQUIRED);
 			}
-			
+
 			String tradeNameStr = request.getParameter(ParameterNames.TRADENAME);
 			if (StringUtils.isBlank(tradeNameStr)) {
 				errors.addParameterError(ParameterNames.TRADENAME, ErrorNames.REQUIRED);
 			}
-			
+
 			String dniStr = request.getParameter(ParameterNames.DNI);
 			if (StringUtils.isBlank(dniStr)) {
 				errors.addParameterError(ParameterNames.DNI, ErrorNames.REQUIRED);
 			}
-			
+
 			String phoneStr = request.getParameter(ParameterNames.PHONE);
 			if (StringUtils.isBlank(phoneStr)) {
 				errors.addParameterError(ParameterNames.PHONE, ErrorNames.REQUIRED);
-			}	
-			
+			}
+
 			String regaStr = request.getParameter(ParameterNames.REGA);
 			if (StringUtils.isBlank(regaStr)) {
 				errors.addParameterError(ParameterNames.REGA, ErrorNames.REQUIRED);
 			}
-			
-			
-			
+
 			Usuario usuario = (Usuario) SessionManager.get(request, AttributeNames.USUARIO);
-			
-			if(!errors.hasErrors()) {
+
+			if (!errors.hasErrors()) {
 				try {
-					
+
 					Usuario user = new Usuario();
 					user = usuario;
 					user.setNombre(userNameStr);
@@ -317,10 +352,8 @@ public class UsuarioServlet extends HttpServlet {
 					user.setPassword(usuario.getPassword());
 					user.setRega(regaStr);
 
-							
-
 					usuarioService.update(user);
-					
+
 					SessionManager.set(request, AttributeNames.USUARIO, user);
 
 					targetView = ViewPaths.USER_PROFILE;
@@ -337,12 +370,14 @@ public class UsuarioServlet extends HttpServlet {
 				} catch (Exception e) {
 					logger.error(userNameStr, e);
 					errors.addCommonError(ErrorNames.EXCEPTION_ERROR);
-							
+
 				}
 
-			}		
-		//formulario contacto indexHome	
-		} else if (ActionNames.CONTACT_US.equalsIgnoreCase(action)){
+			}
+			
+			// formulario contacto indexHome
+			
+		} else if (ActionNames.CONTACT_US.equalsIgnoreCase(action)) {
 
 			targetView = ControllerPaths.HOME;
 			forward = false;
@@ -351,11 +386,10 @@ public class UsuarioServlet extends HttpServlet {
 			String emailStr = request.getParameter(ParameterNames.EMAIL);
 			String mensajeStr = request.getParameter(ParameterNames.MENSAJE);
 
-
-
 			String to = cfgM.getParameter(ConfigUtilsNames.WEB_XESMEL_WEB_PROPERTIES, MAIL);
 
-			String messageOkStr = "El usuario "+nombreStr+" con email "+emailStr+" le ha enviado la siguiente sugerencia : "+mensajeStr;
+			String messageOkStr = nombreStr + " con email " + emailStr + " le ha enviado la siguiente sugerencia : "
+					+ mensajeStr;
 
 			try {
 				mailService.sendEmail(emailStr, null, messageOkStr, to);
@@ -363,14 +397,13 @@ public class UsuarioServlet extends HttpServlet {
 				if (logger.isErrorEnabled()) {
 					logger.error(ErrorNames.MAIL_ERROR);
 				}
-			}	
+			}
 
 			targetView = ViewPaths.HOME_INDEX;
 			forward = false;
 
-
 		}
-		
+
 		logger.info(forward ? "Forwarding to " : "Redirecting to ", targetView);
 		if (forward) {
 			request.getRequestDispatcher(targetView).forward(request, response);

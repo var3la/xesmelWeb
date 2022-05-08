@@ -9,6 +9,8 @@ public class ParameterNames {
 	public static final String COD_APIARIO="codigo-en-apiario";
 	public static final String FECHA_DESDE="fecha-desde";
 	public static final String FECHA_HASTA="fecha-hasta";
+	public static final String FECHA_ALTA="fecha-alta";
+	public static final String FECHA_BAJA="fecha-baja";
 	public static final String TIPO_ORIGEN="tipo-origen";
 	public static final String COLMENA_ID="colmena-id";
 	public static final String COMENTARIO="comentario";

@@ -56,7 +56,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="">Añadir</a>
+                            <a href="<%=request.getContextPath()+ViewPaths.COLMENA_CREATE%>">Añadir</a>
                         </li>
                         <li>
                             <a href="">Consultar</a>

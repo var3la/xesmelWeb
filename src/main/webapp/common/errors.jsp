@@ -11,7 +11,7 @@
  	List<String> commonErrors = errors.getCommonErrors();
  	if (commonErrors.size()>0) {
  %>
- 	<div class="errors">
+ 	<div class="errors" style="color: red;font-family: monospace;">
  		<%
  			for (String error: commonErrors) {
  		%><li><%=error %></li>

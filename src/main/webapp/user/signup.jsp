@@ -68,7 +68,7 @@
       	<span id="error_apellido2" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">Segundo apellido</p>
-        <input class="form-input" type="text" name="<%=ParameterNames.LAST_NAME_TWO%>"value=" <%=ParameterUtils.print(request.getParameter(ParameterNames.LAST_NAME_TWO)) %>"placeholder="Apellido">
+        <input class="form-input" type="text" name="<%=ParameterNames.LAST_NAME_TWO%>"value=" <%=ParameterUtils.print(request.getParameter(ParameterNames.LAST_NAME_TWO)) %>"placeholder="Segundo Apellido"/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.LAST_NAME_TWO);
@@ -81,7 +81,7 @@
 		<span id="error_nombreComercial" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">Nombre comercial</p>
-        <input class="form-input" type="text" name="<%=ParameterNames.TRADENAME%>"value=" <%=ParameterUtils.print(request.getParameter(ParameterNames.TRADENAME)) %>" placeholder="Nombre comercial" required>
+        <input class="form-input" type="text" name="<%=ParameterNames.TRADENAME%>"value=" <%=ParameterUtils.print(request.getParameter(ParameterNames.TRADENAME)) %>" placeholder="Nombre comercial"/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.TRADENAME);
@@ -94,7 +94,7 @@
       	<span id="error_dni" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">DNI</p>
-        <input class="form-input" type="text" name="<%=ParameterNames.DNI%>"value=" <%=ParameterUtils.print(request.getParameter(ParameterNames.DNI)) %>"placeholder="DNI" required>
+        <input class="form-input" type="text" name="<%=ParameterNames.DNI%>"value=" <%=ParameterUtils.print(request.getParameter(ParameterNames.DNI)) %>"placeholder="DNI" required/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.DNI);
@@ -107,7 +107,7 @@
       	<span id="error_telefono" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">Teléfono</p>
-        <input class="form-input" type="text" name="<%=ParameterNames.PHONE%>" value="<%=ParameterUtils.print(request.getParameter(ParameterNames.PHONE)) %>"placeholder="Teléfono" required>
+        <input class="form-input" type="text" name="<%=ParameterNames.PHONE%>" value="<%=ParameterUtils.print(request.getParameter(ParameterNames.PHONE)) %>"placeholder="Teléfono" required/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.PHONE);
@@ -120,7 +120,7 @@
       	<span id="error_email" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">Email</p>
-        <input class="form-input" type="email" name="<%=ParameterNames.EMAIL%>" value="<%=ParameterUtils.print(request.getParameter(ParameterNames.EMAIL)) %>"placeholder="Email" required>
+        <input class="form-input" type="email" name="<%=ParameterNames.EMAIL%>" value="<%=ParameterUtils.print(request.getParameter(ParameterNames.EMAIL)) %>"placeholder="Email" required/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.EMAIL);
@@ -133,7 +133,7 @@
 		<span id="error_password" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">Password</p>
-        <input class="form-input" type="password" name="<%=ParameterNames.PASSWORD%>"value="<%=ParameterUtils.print(request.getParameter(ParameterNames.PASSWORD)) %>"placeholder="Password" required>
+        <input class="form-input" type="password" name="<%=ParameterNames.PASSWORD%>"value="<%=ParameterUtils.print(request.getParameter(ParameterNames.PASSWORD)) %>"placeholder="Password" required/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.PASSWORD);
@@ -146,7 +146,7 @@
 		<span id="error_rega" class="error"></span>
       <label class="form-label-wrapper">
         <p class="form-label">REGA</p>
-        <input class="form-input" type="text" name="<%=ParameterNames.REGA%>" value="<%=ParameterUtils.print(request.getParameter(ParameterNames.REGA)) %>"placeholder="Introduce REGA" required>
+        <input class="form-input" type="text" name="<%=ParameterNames.REGA%>" value="<%=ParameterUtils.print(request.getParameter(ParameterNames.REGA)) %>"placeholder="REGA" required/>
       </label>
       <%
       	parameterError = errors.getParameterError(ParameterNames.REGA);

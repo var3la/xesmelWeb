@@ -1,7 +1,6 @@
 package com.jorge.xesmel.web.service;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -14,14 +13,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
+import com.jorge.xesmel.configuration.ConfigurationManager;
+import com.jorge.xesmel.dao.util.ConfigUtilsNames;
 import com.jorge.xesmel.exception.DataException;
-import com.jorge.xesmel.exception.ErrorCodes;
 import com.jorge.xesmel.exception.ServiceException;
 import com.jorge.xesmel.model.Colmena;
 import com.jorge.xesmel.model.ColmenaCriteria;
+import com.jorge.xesmel.model.Results;
 import com.jorge.xesmel.service.ColmenaService;
 import com.jorge.xesmel.service.impl.ColmenaServiceImpl;
 import com.jorge.xesmel.web.controller.utils.ActionNames;
+import com.jorge.xesmel.web.controller.utils.ConfigNames;
 import com.jorge.xesmel.web.controller.utils.ErrorNames;
 import com.jorge.xesmel.web.controller.utils.ParameterNames;
 
@@ -32,8 +34,10 @@ public class ColmenaWebServiceServlet extends HttpServlet {
 	private static Logger logger = LogManager.getLogger(ColmenaWebServiceServlet.class);
 	
 	private ColmenaService colmenaService = null;
-	
-	private ColmenaCriteria colmenaCriteria = null;
+	private static final String CFGM_PFX = ConfigNames.PFX_WEB;
+	private static final String PAGE_SIZE_WEB = CFGM_PFX +  ConfigNames.PAGE_SIZE_WEB;
+	private static final String START_INDEX = CFGM_PFX + ConfigNames.START_INDEX_WEB;
+	private ConfigurationManager cfg = ConfigurationManager.getInstance();
 	
 	private Gson gson = null;
 	
@@ -41,8 +45,7 @@ public class ColmenaWebServiceServlet extends HttpServlet {
     public ColmenaWebServiceServlet() {
         super();        
         colmenaService = new ColmenaServiceImpl();
-        colmenaCriteria = new ColmenaCriteria();
-        
+       
         gson = new Gson();
         
     }
@@ -53,19 +56,17 @@ public class ColmenaWebServiceServlet extends HttpServlet {
 
     	WebServiceResponse wsResponse = new WebServiceResponse();
     	
-
+    	//busqueda de colmenas por apiario
+    	
     	if(ActionNames.SEARCH.equals(actionStr)) {
-    		//id de apiario
-    		String apiarioIdStr = request.getParameter(ParameterNames.APIARIO_ID);
-
-    		//validacion
-    		Long apiarioId = Long.valueOf(apiarioIdStr);
-
+    		
+    		ColmenaCriteria colmena = new ColmenaCriteria();
+    		    		
     		try {
     			
-    			List<Colmena> colmenas = (List<Colmena>) colmenaService.findById(apiarioId);	
+    			Results<Colmena> results = colmenaService.findBy(colmena, Integer.valueOf(cfg.getParameter(ConfigUtilsNames.WEB_XESMEL_WEB_PROPERTIES, START_INDEX)) , Integer.valueOf(cfg.getParameter(ConfigUtilsNames.WEB_XESMEL_WEB_PROPERTIES, PAGE_SIZE_WEB)));	
 
-    			wsResponse.setData(colmenas);
+    			wsResponse.setData(results.getData());
     			
     		}catch (DataException de) {
     			logger.error(de.toString());
@@ -77,7 +78,7 @@ public class ColmenaWebServiceServlet extends HttpServlet {
     		}
 
     		String json=gson.toJson(wsResponse);
-    		//mimetype. aqui definimos lo que sale por html. convertimos al formato de salida 
+    		 
 
     		response.setContentType("aplication/json");
     		response.setCharacterEncoding("ISO-8859-1");
@@ -85,7 +86,7 @@ public class ColmenaWebServiceServlet extends HttpServlet {
     		ServletOutputStream sos = response.getOutputStream();
 
     		sos.write(json.getBytes());
-    		//saca por consola los datos en json
+    		
     		sos.flush();			
 
     		response.getWriter().append("Served at: ").append(request.getContextPath());

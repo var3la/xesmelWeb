@@ -162,8 +162,31 @@ sub {
 }
 
 .errors{
-	background-color: ff0000;
+	background-color: #e8ce43;
 }
+#error{
+		color:#F00;
+	}
+.bordeError{
+		border-color:#F00;
+	}
+	
+.error {
+		display:none;
+		padding: 0;
+		font-size: 80%;
+		color: white;
+		background-color: #FF0000;
+		box-sizing: border-box;
+	}
+		
+.error.active {
+		padding: 0.3em;
+	}
+	
+.errorCheckbox{
+		background-color:red;
+	}
 
 sup {
   top: -0.5em;

@@ -15,8 +15,11 @@ function buscarApiarios(){
 }
 
 </script>
-
-	
+<%
+			Results<Usuario> results = (Results<Usuario>)request.getAttribute(AttributeNames.USUARIO);
+			List<Usuario> usuarios = results.getData();
+			for (Usuario u:usuarios){
+%>	
 			<div class="users-table table-wrapper">
               <table class="posts-table">
                 <thead>
@@ -32,7 +35,7 @@ function buscarApiarios(){
                   <tr>
                     <td>
                       <label class="users-table__checkbox">
-                        
+                        <%=u.getNombre() %>
                         <div class="categories-table-img">
                           
                         </div>
@@ -50,7 +53,9 @@ function buscarApiarios(){
               </table>
             </div>
 
-
+<%
+			}
+%>
 
 
 <script>$(document).ready(buscarApiarios());</script>

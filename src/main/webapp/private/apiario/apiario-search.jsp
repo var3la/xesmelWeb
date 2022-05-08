@@ -10,7 +10,7 @@ function buscarApiarios(){
 			data:"action=search&usuario-id=<%=usuario.getId()%>",
 			succes: function(data){
 				for (i=0;i<data.length;i++){
-					$('#apiariosTotal').append('<td value="'+data[i].id+'">'+data[i].ubicacion+'</td>');
+					$('#apiariosTotal').append('<td value="'+data[i].id+'">'+data[i].nombre+'</td>').append('<td>+'+data[i].ubicacion+'</td>');
 				}
 			}
 		});

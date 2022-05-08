@@ -59,11 +59,8 @@ public class ApiarioServlet extends HttpServlet{
 			
 			ApiarioCriteria ac = new ApiarioCriteria();
 			
-			ac.setId(apiarioId);
-			ac.setNombre(nombreStr);
-			ac.setUbicacion(ubicacionStr);
 			ac.setUsuarioId(usuarioId);
-			
+						
 			try {
 				
 				List<Apiario> apiarios = apiarioService.findBy(ac);
